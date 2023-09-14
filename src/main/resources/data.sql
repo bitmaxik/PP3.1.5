@@ -7,6 +7,9 @@ create table users
     password varchar(255) not null
 );
 
+ALTER TABLE users
+    ADD UNIQUE (name);
+
 create table roles
 (
     id   bigint primary key auto_increment,
@@ -22,18 +25,19 @@ values ('ROLE_USER');
 
 create table user_role
 (
-    users_id bigint,
-    roles_id bigint
+    user_id bigint,
+    role_id bigint
 );
 
 
 
 INSERT INTO users ( name, age, email, password) VALUES ( 'user1', 123, 'asd@gmail.com', '$2a$12$Ag1kPDLRAyE0TnEsAyQQU.LTlCCouxF7FyEhGfE3FLmtzCsih/4Lu');
+INSERT INTO users ( name, age, email, password) VALUES ( 'user2', 123, 'asd@gmail.com', '$2a$12$Ag1kPDLRAyE0TnEsAyQQU.LTlCCouxF7FyEhGfE3FLmtzCsih/4Lu');
 
 alter table user_role
-    add foreign key (users_id) references users (id);
+    add foreign key (user_id) references users (id);
 alter table user_role
-    add foreign key (roles_id) references roles (id);
+    add foreign key (role_id) references roles (id);
 
-insert into user_role (users_id, roles_id) VALUES (1, 1);
-insert into user_role (users_id, roles_id) VALUES (1, 2);
+insert into user_role (user_id, role_id) VALUES (1, 1);
+insert into user_role (user_id, role_id) VALUES (2, 2);

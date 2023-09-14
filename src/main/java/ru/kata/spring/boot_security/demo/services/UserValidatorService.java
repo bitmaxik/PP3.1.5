@@ -10,12 +10,13 @@ import java.util.Optional;
 @Service
 public class UserValidatorService {
     private final UserRepository userRepository;
+
     @Autowired
     public UserValidatorService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public Optional<User> checkUserByUsername(String username){
+    public Optional<User> checkUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 }
