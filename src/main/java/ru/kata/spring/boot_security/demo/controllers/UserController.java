@@ -23,4 +23,8 @@ public class UserController {
         model.addAttribute("user", userService.getUserByName(principal.getName()));
         return "user";
     }
+@GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
 }

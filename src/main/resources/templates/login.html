@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <form class="form-signing" action="/process_login" method="post">
+        <h2 class="form-signing">Please sign in</h2>
+
+            <label for="email" class="sr-only"></label>
+            <input type="text" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+            <label for="password" class="sr-only"></label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
+
+
+
+<!--<form name="f" method="post" action="/process_login">-->
+<!--    <label for="email">Email address </label>-->
+<!--    <input type="email" name="email" id="email">-->
+<!--    <br/>-->
+<!--    <label for="password">Password </label>-->
+<!--    <input type="password" name="password" id="password">-->
+<!--    <br/>-->
+<!--    <input type="submit" value="Login"/>-->
+
+<!--    <div th:if="${param.error}" style="color:red">-->
+<!--        Неправильные email или пароль-->
+<!--    </div>-->
+
+<!--</form>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</body>
+</html>
