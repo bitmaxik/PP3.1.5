@@ -13,7 +13,6 @@ import ru.kata.spring.boot_security.demo.services.UserService;
 import ru.kata.spring.boot_security.demo.util.UserValidator;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class AdminController {
@@ -32,49 +31,43 @@ public class AdminController {
     @GetMapping(value = "/admin")
     public String showAllUsers(@AuthenticationPrincipal User user, Model model, Role role) {
         model.addAttribute("users", userService.getUsers());
-        model.addAttribute("roles",roleService.getRolesList());
+        model.addAttribute("roles", roleService.getRolesList());
         model.addAttribute("role", role);
         model.addAttribute("newUser", new User());
         model.addAttribute("user", user);
         return "admin";
     }
 
-    @GetMapping("/user/{id}")
-    public String showOneUser(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "/show";
-    }
-
     @GetMapping("/new")
-    public String registrationPage(@ModelAttribute("user") User user) {
-        return "new";
+    public String createNewUser(@ModelAttribute("userNew") User user) {
+        return "redirect:/admin";
     }
 
     @PostMapping("/new")
-    public String performRegistration(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+    public String performCreateNewUser(@ModelAttribute("userNew") @Valid User user, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors())
-            return "new";
+            return "redirect:/new";
         userService.register(user);
-        return "redirect:/login";
+        return "redirect:/admin";
     }
 
-//    @GetMapping("/admin/{id}/edit")
-//    public String edit(Model model, @PathVariable("id") long id) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "/edit";
-//    }
-//
-//    @PatchMapping("/admin/{id}")
-//    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-//                         @PathVariable("id") long id) {
-//        if (bindingResult.hasErrors())
-//            return "edit";
-//
-//        userService.update(id, user);
-//        return "redirect:/admin";
-//
-//    }
+    @GetMapping("/admin/{id}/edit")
+    public String edit(Model model, @PathVariable("id") long id) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "redirect:/admin";
+    }
+
+    @PatchMapping("/admin/{id}")
+    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
+                         @PathVariable("id") long id) {
+        if (bindingResult.hasErrors())
+            return "redirect:/admin";
+
+        userService.update(id, user);
+        return "redirect:/admin";
+
+    }
 
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id) {
