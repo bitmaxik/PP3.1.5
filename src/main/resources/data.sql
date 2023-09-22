@@ -31,8 +31,8 @@ create table user_role
 
 
 
-INSERT INTO users ( name, age, email, password) VALUES ( 'user1', 123, 'asd@gmail.com', '$2a$12$Ag1kPDLRAyE0TnEsAyQQU.LTlCCouxF7FyEhGfE3FLmtzCsih/4Lu');
-INSERT INTO users ( name, age, email, password) VALUES ( 'user2', 123, 'asd@gmail.com', '$2a$12$Ag1kPDLRAyE0TnEsAyQQU.LTlCCouxF7FyEhGfE3FLmtzCsih/4Lu');
+INSERT INTO users ( name, age, email, password) VALUES ( 'user1', 123, 'user1@gmail.com', '$2a$12$Ag1kPDLRAyE0TnEsAyQQU.LTlCCouxF7FyEhGfE3FLmtzCsih/4Lu');
+INSERT INTO users ( name, age, email, password) VALUES ( 'user2', 123, 'user2@gmail.com', '$2a$12$Ag1kPDLRAyE0TnEsAyQQU.LTlCCouxF7FyEhGfE3FLmtzCsih/4Lu');
 
 alter table user_role
     add foreign key (user_id) references users (id);
