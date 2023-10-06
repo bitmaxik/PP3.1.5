@@ -4,6 +4,6 @@ users, roles и user_role.
 
 Добавляется 2 пользователя:
 
-user1 - роль Admin, user2 - роль User
+admin - роль Admin, user - роль User
 
-Пароль - "100"
+Пароль - "123"
